@@ -1,0 +1,6 @@
+{
+  "type": "module", 
+  "dependencies": {
+    "pokedex-promise-v2": "^4.2.0"
+  }
+}

@@ -1,5 +1,5 @@
 import Pokedex from "pokedex-promise-v2";
-const readline = required("readline");
+import readline from "readline";
 
 const pokedex = new Pokedex();
 

@@ -1,14 +1,21 @@
 import Pokedex from "pokedex-promise-v2";
 const readline = required("readline");
 
+const rl = readline.createInterface(process.stdin, process.stdout);
+
 const pokedex = new Pokedex();
 
 function showMenu() {
     //display all menu options
+    console.log("Here are your options: ");
+    console.log("Option1\nOption2");
 }
 
 function prompt(cb) {
     //use readline to ask user for search term
+    rl.question("What do you want to search for? ", (response) => {
+        cb(response);
+    });
 }
 
 function searchPoke(term) {
@@ -45,4 +52,21 @@ function printMove(json) {
 function run() {
     //calls showMenu(), uses readline to ask user to enter their choice.
     //we will call prompt function and pass it to the name of the function we want to use
+    showMenu();
+    rl.question("What would you like to do? ", (response) => {
+        switch(response) {
+            case "1" :
+                prompt(searchPoke);
+                break;
+            case "2" :
+                prompt(searchItem);
+                break;
+            case "3" :
+                prompt(searchMove);
+                break;
+            default:
+                console.log("Please choose from the list.");
+                run();
+        }
+    });
 }

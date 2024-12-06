@@ -35,13 +35,17 @@ function printPoke(json) {
     const temp = JSON.parse(json);
     console.log("Name: " + temp.name);
     console.log("Pokedex Number: " + temp.id);
-    console.log("Height: " + temp.height + " ");
-    console.log("Weight: " + (temp.weight/10) * 2.205 + " lbs");
-    console.log("Species: " + temp.species.name);
+    console.log("Height: " + temp.height/10 + " m");
+    console.log("Weight: " + temp.weight/10 + " kg");
+    console.log("Type: ");
+    for(const key of temp.types) {
+        const type = key.type.name;
+        console.log("\t" + type);
+    }
     console.log("Abilities:");
-    for(const key of temp[abilities]) {
-        const name = temp[abilities][key][ability][name];
-        console.log("\t" + name);
+    for(const key of temp.abilities) {
+        const abil_name = key.ability.name;
+        console.log("\t" + abil_name);
     }
 }
 
@@ -60,18 +64,35 @@ function printItem(json) {
     console.log("Item name: " + temp.name);
     console.log("Item type: " + temp.category.name);
     console.log("Item cost: " + temp.cost);
-    console.log("Item effect: " + temp[effect_entries][0][effect]);
+    console.log("Effect:");
+    for(const key of temp.effect_entries) {
+        const effect = key.effect.name;
+        console.log("\t" + effect);
+    }
 }
 
 function searchMove(term) {
     //works exactly like searchPoke() except searches move endpoint for a move
     //calls corresponding printMove(json) method
+    //calls run() to reprompt
 
     run();
 }
 
 function printMove(json) {
-    //prints move data in neat way, calls run() to reprompt
+    //prints move data in neat way
+    const temp = JSON.parse(json);
+    console.log("Name: " + temp.name);
+    console.log("Power: " + temp.power);
+    console.log("Accuracy: " + temp.accuracy);
+    console.log("PP: " + temp.pp);
+    console.log("Type: " + temp.type.name);
+    console.log("Damage type: " + temp.damage_class.name);
+    console.log("Description:");
+    for(const key of temp.effect_entries) {
+        const effect = key.effect.name;
+        console.log("\t" + effect);
+    }
 }
 
 function run() {
@@ -80,16 +101,16 @@ function run() {
     showMenu();
     rl.question("What would you like to do? ", (response) => {
         switch(response) {
-            case "1" :
+            case "1" : // Searches for Pokemon on 1
                 prompt(searchPoke);
                 break;
-            case "2" :
+            case "2" : // Searches for Items on 2
                 prompt(searchItem);
                 break;
-            case "3" :
+            case "3" : // Searches for Moves on 3
                 prompt(searchMove);
                 break;
-            case "4" :
+            case "4" : // Quits searching on 4
                 exit("Quit out");
                 break;
             default:

@@ -73,15 +73,20 @@ function printItem(json) {
     console.log("Item cost: " + json.cost);
     console.log("Effect:");
     for (const key of json.effect_entries) {
-        const effect = key.effect.name;
+        const effect = key.effect;
         console.log("\t" + effect);
     }
 }
 
-function searchMove(term) {
-    //works exactly like searchPoke() except searches move endpoint for a move
-    //calls corresponding printMove(json) method
-    //calls run() to reprompt
+async function searchMove(term) {
+    try {
+        const response = await pokedex.getMoveByName(term); //query API for a response
+        printMove(response); //print response in a neat way
+    } catch (error) {
+        console.error("Error:", error);
+    } finally {
+        run();
+    }
 
     run();
 }
@@ -97,7 +102,7 @@ function printMove(json) {
     console.log("Damage type: " + json.damage_class.name);
     console.log("Description:");
     for (const key of json.effect_entries) {
-        const effect = key.effect.name;
+        const effect = key.effect;
         console.log("\t" + effect);
     }
 }

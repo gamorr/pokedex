@@ -8,7 +8,7 @@ run(); //run our program
 
 function showMenu() {
     //display all menu options
-    console.log("\n\nHere are your options: ");
+    console.log("\nHere are your options: ");
     console.log("1: Search for a Pokemon.");
     console.log("2: Search for an Item.");
     console.log("3: Search for a Pokemon Move.");

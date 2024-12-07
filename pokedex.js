@@ -1,3 +1,5 @@
+// Programmed by Gavin Cowan and Gavin Morrow
+
 import Pokedex from "pokedex-promise-v2";
 import readline from "readline";
 

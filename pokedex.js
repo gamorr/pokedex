@@ -87,8 +87,6 @@ async function searchMove(term) {
     } finally {
         run();
     }
-
-    run();
 }
 
 function printMove(json) {

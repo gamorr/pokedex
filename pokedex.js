@@ -58,7 +58,7 @@ async function searchItem(term) {
     //queries API for what poke user decides to enter
     try {
         const response = await pokedex.getItemByName(term); //query API for a response
-        printPoke(response); //print response in a neat way
+        printItem(response); //print response in a neat way
     } catch (error) {
         console.error("Error:", error);
     } finally {
@@ -118,7 +118,7 @@ function run() {
                 prompt(searchMove);
                 break;
             case "4": // Quits searching on 4
-                exit("Quit out");
+                process.exit(0);
                 break;
             default:
                 console.log("Please choose from the list.");
